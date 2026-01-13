@@ -9,7 +9,7 @@ CORS(app)
 
 # CONFIGURATION
 # In a real app, use environment variables for keys!
-API_KEY = os.getenv("GENAI_API_KEY", "AIzaSyAVxJY2ebG2W4MOmyu8YPq5YIgoTOfxdxA") 
+API_KEY = os.getenv("GENAI_API_KEY") 
 
 genai.configure(api_key=API_KEY)
 
