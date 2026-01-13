@@ -8,13 +8,13 @@ app = Flask(__name__)
 CORS(app) 
 
 # CONFIGURATION
-# In a real app, use environment variables for keys!
+# please use your actual google api key when deploying
 API_KEY = os.getenv("GENAI_API_KEY") 
 
 genai.configure(api_key=API_KEY)
 
-# We use 'gemini-1.5-flash' because it's fast and has a HUGE context window 
-# (it can read that 100k char text easily).
+# We use 'gemini-1.5-flash' here because it is free (lol)
+# + (it can read that 100k char text easily).
 model = genai.GenerativeModel('gemini-flash-latest')
 
 @app.route('/analyze', methods=['POST'])
@@ -28,7 +28,7 @@ def analyze_terms():
     print(f"Received {len(text_content)} characters. Analyzing...")
 
     # THE SYSTEM PROMPT
-    # This tells the AI exactly how to behave.
+    # This is basically a prompt which is given to the the model 
     prompt = f"""
     You are an expert legal auditor protecting consumer rights. 
     Analyze the following Terms and Conditions text. 
@@ -51,7 +51,7 @@ def analyze_terms():
     TEXT TO ANALYZE:
     {text_content[:15000]} 
     """ 
-    # Note: We slice to 300k chars just to be safe, though Flash can handle more.
+    # Note: we slice this to 15k char. You can increase this count if you have a better model with more tokens.
 
     try:
         response = model.generate_content(prompt)
