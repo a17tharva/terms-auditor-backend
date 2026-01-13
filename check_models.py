@@ -1,6 +1,10 @@
+# Use this code to check out recent models 
+
+
+
 import google.generativeai as genai
 
-genai.configure(api_key="AIzaSyAVxJY2ebG2W4MOmyu8YPq5YIgoTOfxdxA")
+genai.configure(api_key="Your API key here ")
 
 print("🔍 Checking available models...")
 try:
@@ -9,3 +13,4 @@ try:
             print(f"✅ Found: {m.name}")
 except Exception as e:
     print(f"❌ Error: {e}")
+
